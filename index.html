@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🛡️ مركز العمليات السيبرانية التكتيكي</title>
+    <title>🛡️ وحدة الدفاع السيبراني التكتيكي - أبو ناصر</title>
     <style>
         body {
-            background-color: #0a0f0d;
+            background-color: #050a08;
             color: #00ff66;
             font-family: 'Courier New', Courier, monospace;
             padding: 20px;
@@ -23,6 +23,7 @@
         .status {
             color: #ff3333;
             animation: blink 1.5s infinite;
+            font-weight: bold;
         }
         @keyframes blink {
             0% { opacity: 1; }
@@ -31,17 +32,20 @@
         }
         .grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             gap: 20px;
         }
         .card {
             border: 1px solid #00ff66;
-            background-color: #111a16;
+            background-color: #0b1410;
             padding: 15px;
             border-radius: 4px;
-            box-shadow: 0 0 10px rgba(0, 255, 102, 0.1);
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.05);
         }
         .full-width {
+            grid-column: span 3;
+        }
+        .span-2 {
             grid-column: span 2;
         }
         h2 {
@@ -49,6 +53,7 @@
             color: #00e1ff;
             border-bottom: 1px solid #00e1ff;
             padding-bottom: 5px;
+            font-size: 1.1em;
         }
         .ip-highlight {
             color: #ffcc00;
@@ -62,45 +67,133 @@
             border-radius: 4px;
             font-size: 0.9em;
             overflow-y: auto;
-            max-height: 150px;
+            max-height: 120px;
+        }
+        /* تصميم الرادار المتحرك سينمائياً */
+        .radar-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 180px;
+        }
+        .radar {
+            width: 150px;
+            height: 150px;
+            border: 2px solid #00ff66;
+            border-radius: 50%;
+            position: relative;
+            background: radial-gradient(circle, rgba(0,255,102,0.1) 0%, rgba(0,0,0,1) 70%);
+            overflow: hidden;
+        }
+        .radar::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(0,255,102,0.4) 0%, rgba(0,255,102,0) 50%);
+            transform-origin: rotate(0deg);
+            animation: radar-sweep 4s linear infinite;
+            top: 0; left: 0;
+        }
+        @keyframes radar-sweep {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .radar-dot {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: #ff3333;
+            border-radius: 50%;
+            top: 40%; left: 60%;
+            box-shadow: 0 0 10px #ff3333;
+            animation: dot-blink 1s infinite alternate;
+        }
+        @keyframes dot-blink { from { opacity: 0.2; } to { opacity: 1; } }
+        
+        /* تصميم شريط تقدم كفاءة البيانات المكتشفة */
+        .progress-bar {
+            background-color: #222;
+            border: 1px solid #00ff66;
+            height: 20px;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        .progress-fill {
+            background-color: #00ff66;
+            height: 100%;
+            width: 87%;
+            animation: loadProgress 3s ease-in-out;
+        }
+        @keyframes loadProgress { from { width: 0%; } to { width: 87%; } }
+        
+        .main-banner {
+            width: 100%;
+            height: auto;
+            border: 1px solid #00e1ff;
+            border-radius: 4px;
+            margin-bottom: 15px;
         }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <h1>🛡️ COMMAND CENTER // مركز التحكم والدفاع</h1>
-        <div class="status">● LIVE INTERCEPT ACTIVE</div>
+        <h1>🛡️ وحدة الدفاع السيبراني – أبو ناصر // COMMAND CENTER</h1>
+        <div class="status">● SATELLITE LINK ACTIVE</div>
+    </div>
+
+    <!-- عرض الصورة القيادية الاحترافية الخاصة بأبو ناصر في المنتصف -->
+    <div class="card full-width" style="text-align: center;">
+        <img src="abunasser.png" alt="وحدة الدفاع السيبراني - أبو ناصر" class="main-banner">
     </div>
 
     <div class="grid">
-        <!-- قسم جلب معلومات المستهدف -->
+        <!-- 1. معلومات المستهدف -->
         <div class="card">
-            <h2>📍 المستهدف الرقمي الحركي</h2>
-            <p>عنوان الـ IP الحالي: <span class="ip-highlight">8.8.8.8</span></p>
-            <p>الجهة المالكة: <span style="color:#fff;">Google LLC</span></p>
-            <p>الدولة المستضيفة: <span style="color:#fff;">الولايات المتحدة الأمريكية (US)</span></p>
+            <h2>📍 التتبع الجغرافي للمستهدف</h2>
+            <p>عنوان الـ IP المكتشف: <span class="ip-highlight">8.8.8.8</span></p>
+            <p>المالك المستضيف: <span style="color:#fff;">Google LLC</span></p>
+            <p>النطاق الإقليمي: <span style="color:#fff;">الولايات المتحدة الأمريكية (US)</span></p>
+            <div>كفاءة اعتراض حزم البيانات:</div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <p style="font-size:0.8em; text-align:left; color:#00e1ff;">INTELLIGENCE SCORE: 87%</p>
         </div>
 
-        <!-- قسم المنافذ والثغرات المكتشفة -->
+        <!-- 2. رادار التقصي الحي المطور -->
         <div class="card">
-            <h2>🔧 المنافذ والخدمات المفتوحة</h2>
-            <ul>
-                <li><b style="color: #ff3333;">Port 53</b> - نظام أسماء النطاقات (DNS) // نشط</li>
-                <li><b style="color: #ffcc00;">Port 443</b> - التصفح الآمن (HTTPS) // نشط</li>
+            <h2>🛰️ رادار تقصي الأهداف والمسيرات الحركي</h2>
+            <div class="radar-container">
+                <div class="radar">
+                    <div class="radar-dot"></div>
+                </div>
+            </div>
+            <p style="text-align: center; font-size: 0.9em; margin: 0; color:#ff3333;">[⚠️] تم رصد وتثبيت إحداثيات الهدف بنجاح</p>
+        </div>
+
+        <!-- 3. المنافذ المفتوحة -->
+        <div class="card">
+            <h2>🔧 الخدمات والمنافذ النشطة</h2>
+            <ul style="padding-right: 20px; line-height: 1.6;">
+                <li><b style="color: #ff3333;">Port 53</b> - نظام DNS (مفتوح وعامل)</li>
+                <li><b style="color: #ffcc00;">Port 443</b> - بروتوكول HTTPS (مشفر)</li>
             </ul>
-            <p>حالة الاستطلاع: <span style="color: #00ff66;">ناجح وبدون كشف الهوية</span></p>
+            <p>نظام التشفير الدفاعي: <span style="color: #00e1ff; font-weight: bold;">AES-256 ACTIVE</span></p>
+            <p>حالة التخفي واستطلاع كالي: <span style="color: #00ff66;">صامت ومحمي 100%</span></p>
         </div>
 
-        <!-- تغذية حية تحاكي كالي لينكس -->
+        <!-- 4. تلميم الأوامر والبيانات القادمة من كالي -->
         <div class="card full-width">
-            <h2>📟 Live OSINT Terminal Feed // البيانات القادمة من كالي</h2>
+            <h2>📟 Live OSINT Terminal Feed // مستندات الأوامر الحية</h2>
             <div class="terminal">
-                <p>> [INFO] Kali Linux script initiated search...</p>
-                <p>> [SUCCESS] Connection established with Shodan secure API.</p>
-                <p>> [DATA RECOVERY] Target IP 8.8.8.8 mapped successfully.</p>
-                <p>> [STATUS] Recursion: enabled. System vulnerabilities scanned.</p>
-                <p>> [READY] Waiting for next target assignment...</p>
+                <p>> [INFO] Kali Linux system connected via secure tunnel...</p>
+                <p>> [SUCCESS] Shodan Passive scan returned structural network configurations.</p>
+                <p>> [RADAR DATA] Target coordinates locked via geospatial IP mapping.</p>
+                <p>> [DEFENSE SYSTEM] Cyber-Shield and Threat Intelligence module online.</p>
+                <p>> [READY] Standby for incoming tactical reconnaissance requests...</p>
             </div>
         </div>
     </div>
